@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}Reconhecimento de Faces{% endblock %}
+{% block content %}
+
+<div class="container">
+
+  <div class="row">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <div class="row">
+    <div class="col col-sm-12">
+      <form method="POST" action="/create_dataset">
+        {% csrf_token %}
+        {{ forms.as_p }}
+        <button type="submit" class="btn btn-primary">Tirar Foto</button>
+      </form>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="row">
+    <div class="col col-sm-12">
+      <a href="/treinar" class="btn btn-warning">Treinar Imagem Cadastrada</a>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="row">
+    <div class="col col-sm-12">
+      <a href="/detectar" class="btn btn-success">Detectar Rosto</a>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
